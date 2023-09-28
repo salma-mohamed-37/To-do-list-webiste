@@ -11,7 +11,26 @@ export class AllTasksComponent implements OnInit
 {
   constructor(private filterService : FilterHandlingService) {}
   filter:string ="All"
-  tasks : Task[] = []
+  tasks : Task[] = [
+    {
+      id:1,
+      content :"my first task",
+      date :  new Date('2023-09-28'),
+      isCompleted : false
+    },
+    {
+      id:2,
+      content :"my second task",
+      date :  new Date('2023-09-28'),
+      isCompleted : true
+    },
+    {
+      id:3,
+      content :"my third task",
+      date :  new Date('2023-09-28'),
+      isCompleted : false
+    }
+  ]
 
   ngOnInit()
   {
@@ -24,5 +43,16 @@ export class AllTasksComponent implements OnInit
     });
   }
 
+  check(id:number)
+  {
+
+    if( this.tasks.find(t => t.id == id)!.isCompleted)
+        this.tasks.find(t => t.id == id)!.isCompleted = false
+    else
+    {
+      this.tasks.find(t => t.id == id)!.isCompleted = true
+    }
+
+  }
 
 }

@@ -2,3 +2,19 @@
 {
   color:#9288F8;
 }
+
+div
+{
+  width: 100%;
+}
+
+p
+{
+  border:1px solid #9288F8;
+  width: 100%;
+}
+
+span
+{
+  background-color: white;
+}

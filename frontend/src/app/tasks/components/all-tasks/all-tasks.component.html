@@ -1,2 +1,10 @@
-<h1>{{filter}}</h1>
-
+<main>
+<h1>{{filter}} <i class="pi pi-plus"></i></h1>
+<div>
+  <p *ngFor="let t of tasks">
+    <span *ngIf="t.isCompleted == false" class="pi pi-stop" (click)="check(t.id)"></span> <span *ngIf="t.isCompleted == true" class="pi pi-check-square" (click)="check(t.id)"></span>
+    {{t.content}} <i class="pi pi-pencil"></i> <i class="pi pi-trash"></i><br/>
+    <i class="pi pi-calendar"></i>{{t.date | date: 'dd-MM-yy '}}
+  </p>
+</div>
+</main>
