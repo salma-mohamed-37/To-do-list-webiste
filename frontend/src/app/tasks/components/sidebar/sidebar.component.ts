@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FilterHandlingService } from '../../services/filter-handling.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent
 {
+  constructor(private filterService : FilterHandlingService) {}
   filters : string[] =[
     "All","Today", "Upcomming","Completed"
   ]
@@ -14,6 +16,7 @@ export class SidebarComponent
   addFilter(filter:string)
   {
     console.log(filter)
+    this.filterService.setFilter(filter)
   }
 
 }
