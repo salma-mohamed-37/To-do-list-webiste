@@ -1,0 +1,7 @@
+<section>
+  <h1>To Do List</h1>
+  <p *ngFor="let f of filters" (click)=addFilter(f) >
+    <span>{{f}}</span>
+  </p>
+</section>
+
