@@ -2,19 +2,42 @@
 {
   color:var(--text-color);
 }
+main
+{
+  padding:5px;
+}
 
 div
 {
   width: 100%;
 }
 
-p
+section
 {
   border:1px solid var(--text-color);
   width: 100%;
+  margin: 0.5rem 0px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 span
 {
   background-color: white;
+}
+.pi-plus
+{
+  font-size: 1.5rem;
+}
+
+h1
+{
+  display: inline-block;
+}
+
+.pi
+{
+  margin: 3px;
 }

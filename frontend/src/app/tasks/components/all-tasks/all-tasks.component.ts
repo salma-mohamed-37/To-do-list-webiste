@@ -10,7 +10,7 @@ import { FilterHandlingService } from '../../services/filter-handling.service';
 export class AllTasksComponent implements OnInit
 {
   constructor(private filterService : FilterHandlingService) {}
-  addFlag: boolean= true;
+  addFlag: boolean= false;
   updateFlag: boolean= false;
   filter:string ="All"
   tasks : Task[] = [
@@ -40,7 +40,6 @@ export class AllTasksComponent implements OnInit
 
     this.filterService.filter$.subscribe(filter => {
       this.filter = filter;
-      // Perform any necessary actions with the filter value
       console.log(this.filter);
     });
   }

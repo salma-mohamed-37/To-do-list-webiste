@@ -1,12 +1,18 @@
 <main>
-<h1>{{filter}} <i class="pi pi-plus" (click)="add()"></i></h1>
-<div>
-  <p *ngFor="let t of tasks">
-    <span *ngIf="t.isCompleted == false" class="pi pi-stop" (click)="check(t.id)"></span> <span *ngIf="t.isCompleted == true" class="pi pi-check-square" (click)="check(t.id)"></span>
-    {{t.content}} <i class="pi pi-pencil"></i> <i class="pi pi-trash"></i><br/>
-    <i class="pi pi-calendar"></i>{{t.date | date: 'dd-MM-yy '}}
-  </p>
-</div>
+    <div style="display: flex;align-items: center;justify-content: space-between;"><h1>{{filter}} </h1><i class="pi pi-plus" (click)="add()"></i></div>
+    <div>
+      <section *ngFor="let t of tasks">
+        <p>
+          <span *ngIf="t.isCompleted == false" class="pi pi-stop" (click)="check(t.id)"></span> <span *ngIf="t.isCompleted == true" class="pi pi-check-square" (click)="check(t.id)"></span>
+          {{t.content}}
+          <br/>
+          <i class="pi pi-calendar"></i>{{t.date | date: 'dd-MM-yy '}}
+        </p>
+        <p>
+          <i class="pi pi-pencil"></i> <i class="pi pi-trash"></i>
+        </p>
+      </section>
+    </div>
 </main>
 
 <p-dialog  [(visible)]="addFlag" [modal]="true" [style]="{ 'width': '450px'}" >
@@ -14,7 +20,6 @@
   <ng-template pTemplate="content">
    <div><app-add-task></app-add-task></div>
   </ng-template>
-
 </p-dialog>
 
 <p-dialog header="Add Task" [(visible)]="updateFlag" [modal]="true"  [style]="{ width: '450px'}" >
