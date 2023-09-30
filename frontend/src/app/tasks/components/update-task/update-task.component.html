@@ -1,0 +1,9 @@
+<main>
+  <form [formGroup]="updateForm" (ngSubmit)="submit()">
+    <label for="task">Task</label> <br/>
+    <input type="text" name="task" id="task" formControlName="content"/> <br/>
+    <label for="dueDate"> Due date</label><br/>
+    <input type="date" name="dueDate" id="dueDate" formControlName="dueDate"/><br/>
+    <p style="text-align: center;"><input type="submit" value="Update"/></p>
+  </form>
+</main>
