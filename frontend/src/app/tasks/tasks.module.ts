@@ -4,6 +4,9 @@ import { TasksComponent } from './tasks/tasks.component';
 import { TasksRoutingModule } from './tasks-routing.module';
 import { AllTasksComponent } from './components/all-tasks/all-tasks.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { DialogModule } from 'primeng/dialog';
+import { AddTaskComponent } from './components/add-task/add-task.component';
+
 
 
 
@@ -11,11 +14,13 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   declarations: [
     TasksComponent,
     AllTasksComponent,
-    SidebarComponent
+    SidebarComponent,
+    AddTaskComponent
   ],
   imports: [
     CommonModule,
-    TasksRoutingModule
+    TasksRoutingModule,
+    DialogModule
   ]
 })
 export class TasksModule { }

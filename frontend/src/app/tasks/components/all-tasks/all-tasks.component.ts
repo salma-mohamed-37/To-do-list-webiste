@@ -5,11 +5,13 @@ import { FilterHandlingService } from '../../services/filter-handling.service';
 @Component({
   selector: 'app-all-tasks',
   templateUrl: './all-tasks.component.html',
-  styleUrls: ['./all-tasks.component.css']
+  styleUrls: ['./all-tasks.component.css'],
 })
 export class AllTasksComponent implements OnInit
 {
   constructor(private filterService : FilterHandlingService) {}
+  addFlag: boolean= true;
+  updateFlag: boolean= false;
   filter:string ="All"
   tasks : Task[] = [
     {
@@ -45,14 +47,23 @@ export class AllTasksComponent implements OnInit
 
   check(id:number)
   {
-
-    if( this.tasks.find(t => t.id == id)!.isCompleted)
+    if(this.tasks.find(t => t.id == id)!.isCompleted)
         this.tasks.find(t => t.id == id)!.isCompleted = false
     else
-    {
       this.tasks.find(t => t.id == id)!.isCompleted = true
-    }
-
   }
+
+  add()
+  {
+    this.addFlag = true
+    console.log(this.addFlag)
+  }
+
+  update()
+  {
+    this.updateFlag = true
+    console.log(this.updateFlag)
+  }
+
 
 }

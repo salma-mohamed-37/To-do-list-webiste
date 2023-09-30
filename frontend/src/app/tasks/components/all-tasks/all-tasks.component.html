@@ -1,5 +1,5 @@
 <main>
-<h1>{{filter}} <i class="pi pi-plus"></i></h1>
+<h1>{{filter}} <i class="pi pi-plus" (click)="add()"></i></h1>
 <div>
   <p *ngFor="let t of tasks">
     <span *ngIf="t.isCompleted == false" class="pi pi-stop" (click)="check(t.id)"></span> <span *ngIf="t.isCompleted == true" class="pi pi-check-square" (click)="check(t.id)"></span>
@@ -8,3 +8,15 @@
   </p>
 </div>
 </main>
+
+<p-dialog  [(visible)]="addFlag" [modal]="true" [style]="{ 'width': '450px'}" >
+  <p-header><div style="color:#8062D6;">Add Task Form</div></p-header>
+  <ng-template pTemplate="content">
+   <div><app-add-task></app-add-task></div>
+  </ng-template>
+
+</p-dialog>
+
+<p-dialog header="Add Task" [(visible)]="updateFlag" [modal]="true"  [style]="{ width: '450px'}" >
+  <app-add-task></app-add-task>
+</p-dialog>
