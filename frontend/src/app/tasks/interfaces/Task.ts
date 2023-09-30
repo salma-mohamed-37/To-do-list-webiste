@@ -2,6 +2,6 @@ export interface Task
 {
   id:number;
   content :string;
-  date : Date ;
+ dueDate : Date ;
   isCompleted : boolean;
 }

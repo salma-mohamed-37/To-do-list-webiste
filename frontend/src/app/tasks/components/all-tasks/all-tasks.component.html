@@ -6,7 +6,7 @@
           <span *ngIf="t.isCompleted == false" class="pi pi-stop" (click)="check(t.id)"></span> <span *ngIf="t.isCompleted == true" class="pi pi-check-square" (click)="check(t.id)"></span>
           {{t.content}}
           <br/>
-          <i class="pi pi-calendar"></i>{{t.date | date: 'dd-MM-yy '}}
+          <i class="pi pi-calendar"></i>{{t.dueDate | date: 'dd-MM-yy '}}
         </p>
         <p>
           <i class="pi pi-pencil"></i> <i class="pi pi-trash"></i>

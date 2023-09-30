@@ -5,7 +5,9 @@ import { TasksRoutingModule } from './tasks-routing.module';
 import { AllTasksComponent } from './components/all-tasks/all-tasks.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DialogModule } from 'primeng/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AddTaskComponent } from './components/add-task/add-task.component';
+import { UpdateTaskComponent } from './components/update-task/update-task.component';
 
 
 
@@ -15,12 +17,14 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
     TasksComponent,
     AllTasksComponent,
     SidebarComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    UpdateTaskComponent
   ],
   imports: [
     CommonModule,
     TasksRoutingModule,
-    DialogModule
+    DialogModule,
+    ReactiveFormsModule
   ]
 })
 export class TasksModule { }

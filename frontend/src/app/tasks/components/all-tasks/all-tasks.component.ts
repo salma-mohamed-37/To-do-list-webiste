@@ -17,19 +17,19 @@ export class AllTasksComponent implements OnInit
     {
       id:1,
       content :"my first task",
-      date :  new Date('2023-09-28'),
+      dueDate :  new Date('2023-09-28'),
       isCompleted : false
     },
     {
       id:2,
       content :"my second task",
-      date :  new Date('2023-09-28'),
+      dueDate :  new Date('2023-09-28'),
       isCompleted : true
     },
     {
       id:3,
       content :"my third task",
-      date :  new Date('2023-09-28'),
+      dueDate :  new Date('2023-09-28'),
       isCompleted : false
     }
   ]
