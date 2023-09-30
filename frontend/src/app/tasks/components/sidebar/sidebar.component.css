@@ -2,10 +2,10 @@ section
 {
   display: flex;
   flex-direction: column;
-  background-color: #322653;
+  background-color: var(--secondary-color);
   min-height:100vh;
   width: fit-content;
-  color:#9288F8;
+  color:var(--secondary-text-color);
   padding: 0.5rem;
   box-sizing: border-box;
   min-width:25vh;
@@ -14,12 +14,12 @@ section
 p
 {
   padding:  1rem 0;
-  border-bottom:1px solid #322653;
+  border-bottom:1px solid var(--secondary-color);
 }
 
 p:hover
 {
-  border-bottom:1px solid #9288F8;
+  border-bottom:1px solid var(--text-color);
   cursor: pointer;
 }
 

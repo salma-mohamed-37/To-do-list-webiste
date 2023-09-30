@@ -1,6 +1,6 @@
 *
 {
-  color:#9288F8;
+  color:var(--text-color);
 }
 
 div
@@ -10,7 +10,7 @@ div
 
 p
 {
-  border:1px solid #9288F8;
+  border:1px solid var(--text-color);
   width: 100%;
 }
 
