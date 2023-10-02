@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task} from '../../interfaces/Task';
 import { FilterHandlingService } from '../../services/filter-handling.service';
+import { TasksService } from '../../services/tasks.service';
 
 @Component({
   selector: 'app-all-tasks',
@@ -9,30 +10,12 @@ import { FilterHandlingService } from '../../services/filter-handling.service';
 })
 export class AllTasksComponent implements OnInit
 {
-  constructor(private filterService : FilterHandlingService) {}
+  constructor(private filterService : FilterHandlingService , private  tasksService: TasksService) {}
   addFlag: boolean= false;
   updateFlag: boolean= false;
+  id:number =0;
   filter:string ="All"
-  tasks : Task[] = [
-    {
-      id:1,
-      content :"my first task",
-      dueDate :  new Date('2023-09-28'),
-      isCompleted : false
-    },
-    {
-      id:2,
-      content :"my second task",
-      dueDate :  new Date('2023-09-28'),
-      isCompleted : true
-    },
-    {
-      id:3,
-      content :"my third task",
-      dueDate :  new Date('2023-09-28'),
-      isCompleted : false
-    }
-  ]
+  tasks : Task[] = []
 
   ngOnInit()
   {
@@ -40,8 +23,19 @@ export class AllTasksComponent implements OnInit
 
     this.filterService.filter$.subscribe(filter => {
       this.filter = filter;
-      console.log(this.filter);
+
+    this.tasksService.getTasks(this.filter).subscribe({
+      next: (tasks)=>{
+        console.log("arrived");
+        this.tasks=tasks
+      },
+      error: (err)=>{
+        console.log(err)
+      }
+    })
     });
+
+
   }
 
   check(id:number)
@@ -55,13 +49,12 @@ export class AllTasksComponent implements OnInit
   add()
   {
     this.addFlag = true
-    console.log(this.addFlag)
   }
 
-  update()
+  update(id:number)
   {
     this.updateFlag = true
-    console.log(this.updateFlag)
+    this.id = id
   }
 
 

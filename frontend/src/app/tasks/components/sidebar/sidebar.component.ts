@@ -15,7 +15,6 @@ export class SidebarComponent
 
   addFilter(filter:string)
   {
-    console.log(filter)
     this.filterService.setFilter(filter)
   }
 

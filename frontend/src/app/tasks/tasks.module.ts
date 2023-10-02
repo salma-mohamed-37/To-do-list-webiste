@@ -8,6 +8,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddTaskComponent } from './components/add-task/add-task.component';
 import { UpdateTaskComponent } from './components/update-task/update-task.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -24,7 +25,9 @@ import { UpdateTaskComponent } from './components/update-task/update-task.compon
     CommonModule,
     TasksRoutingModule,
     DialogModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    HttpClientModule
+  ],
+  providers:[HttpClientModule]
 })
 export class TasksModule { }
