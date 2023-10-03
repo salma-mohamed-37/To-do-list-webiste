@@ -1,0 +1,26 @@
+@import "primeicons/primeicons.css";
+:root
+{
+  --primary-color: #FFD2D7;
+  --secondary-color: #322653;
+  --text-color:#8062D6;
+  --secondary-text-color:#9288F8;
+}
+*
+{
+  margin:0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body
+{
+  background-color: var(--primary-color);
+}
+
+html, body
+{
+  margin:0;
+  padding: 0;
+  outline:0;
+}

@@ -1,0 +1,29 @@
+main
+{
+  padding:6px;
+  background-color:var(--secondary-color);
+  color:var(--secondary-text-color);
+  font-size: 1.5rem;
+}
+
+input[type=submit]
+{
+  background-color: var(--primary-color);
+  color:var(--text-color);
+  border:none;
+  font-size: 1.5rem;
+  padding:4px 10px;
+}
+
+input[type=submit]:hover
+{
+  cursor: pointer;
+  background-color: var(--text-color);
+  color:white;
+}
+
+input[type=text]
+{
+  width:15rem;
+  font-size: 1rem;
+}

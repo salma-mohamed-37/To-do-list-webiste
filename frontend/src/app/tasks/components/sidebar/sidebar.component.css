@@ -1,0 +1,32 @@
+section
+{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-color);
+  min-height:100vh;
+  width: fit-content;
+  color:var(--secondary-text-color);
+  padding: 0.5rem;
+  box-sizing: border-box;
+  min-width:25vh;
+}
+
+p
+{
+  padding:  1rem 0;
+  border-bottom:1px solid var(--secondary-color);
+}
+
+p:hover
+{
+  border-bottom:1px solid var(--text-color);
+  cursor: pointer;
+}
+
+h1
+{
+  padding: 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+

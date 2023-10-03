@@ -1,0 +1,10 @@
+<main>
+  <form [formGroup]="updateForm" (ngSubmit)="submit()">
+    <label for="task">Task (required)</label> <br/>
+    <input type="text" name="task" id="task" formControlName="content"/> <br/>
+    <label for="dueDate"> Due date (optional)</label><br/>
+    <input type="date" name="dueDate" id="dueDate" formControlName="dueDate"/>  <span style="font-size: 1rem;">(MM / DD / YYYY)</span><br/>
+
+    <p style="text-align: center;"><input type="submit" value="Update"/></p>
+  </form>
+</main>
