@@ -34,7 +34,7 @@ namespace backend.Controllers
 
                 case "Today":
                     DateTime today = DateTime.Now;
-                    var todayTasks = await context.Tasks.AsNoTracking().Where(x => x.DueDate == today).OrderBy(x => x.IsCompleted).ProjectTo<GetTaskDto>(mapper.ConfigurationProvider).ToListAsync();
+                    var todayTasks = await context.Tasks.AsNoTracking().Where(x => x.DueDate.HasValue && x.DueDate.Value.Date == today.Date).OrderBy(x => x.IsCompleted).ProjectTo<GetTaskDto>(mapper.ConfigurationProvider).ToListAsync();
                     return Ok(todayTasks);
 
                 case "Completed":
@@ -43,11 +43,71 @@ namespace backend.Controllers
 
                 case "Upcomming":
                     DateTime today2 = DateTime.Now;
-                    var upcommingTasks = await context.Tasks.AsNoTracking().Where(x => x.DueDate > today2).OrderBy(x => x.DueDate).ToListAsync();
+                    var upcommingTasks = await context.Tasks.AsNoTracking().Where(x=>x.DueDate.HasValue && x.DueDate.Value.Date > today2.Date).OrderBy(x => x.DueDate).ToListAsync();
                     return Ok(upcommingTasks);
             }
             var tasks = await context.Tasks.AsNoTracking().OrderBy(x => x.IsCompleted).OrderBy(x => x.DueDate).ProjectTo<GetTaskDto>(mapper.ConfigurationProvider).ToListAsync();
             return Ok(tasks);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> addTask(AddTaskDto dto)
+        {
+            var validationResult = await validator.ValidateAsync(dto);
+            if (!ModelState.IsValid)
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            Models.Task task = mapper.Map<Models.Task>(dto);
+
+            context.Tasks.Add(task);
+
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpGet("{id}/{completed}")]
+        public async Task<IActionResult> check(int id,bool completed)
+        {
+            var task = await context.Tasks.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (task == null) 
+            {
+                return NotFound();
+            }
+            task.IsCompleted= completed;
+
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> update(int id, AddTaskDto dto)
+        {
+            var task = await context.Tasks.Where(x=>x.Id == id).FirstOrDefaultAsync();
+            if(task is null)
+            {
+                return NotFound();
+            }
+            task.Content = dto.Content;
+            task.DueDate = dto.DueDate;
+
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> delete(int id)
+        {
+            var task = await context.Tasks.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (task is null)
+            {
+                return NotFound();
+            }
+            context.Tasks.Remove(task);
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
     }
 }

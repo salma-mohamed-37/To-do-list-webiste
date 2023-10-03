@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Task} from '../../interfaces/Task';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TasksService } from '../../services/tasks.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-add-task',
@@ -9,8 +11,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddTaskComponent
 {
+  @Output() close = new EventEmitter<boolean>();
+
   addForm! :FormGroup;
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, private tasksService :TasksService){}
 
   ngOnInit() {
     this.addForm = this.fb.group({
@@ -27,7 +31,22 @@ export class AddTaskComponent
       'dueDate' : new Date(this.addForm.get('dueDate')!.value),
       'isCompleted' : false
     }
-    console.log(task)
+    this.addTask(task)
+    console.log("sent")
+  }
+
+  addTask(task:Task)
+  {
+    this.tasksService.addTask(task).subscribe({
+      next: (res)=>{
+        console.log("arrived");
+        this.close.emit(false);
+      },
+      error: (err)=>{
+        console.log(err)
+      }
+    })
+
   }
 
 

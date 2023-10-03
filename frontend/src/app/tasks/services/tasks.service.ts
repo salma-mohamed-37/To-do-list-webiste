@@ -20,4 +20,19 @@ export class TasksService {
   {
     return this.http.post(this.url,task);
   }
+
+  check(id:number,completed :boolean)
+  {
+    return this.http.get(this.url+id+"/"+completed)
+  }
+
+  update(id:number,task:Task)
+  {
+    return this.http.put(this.url+id,task)
+  }
+
+  delete(id:number)
+  {
+    return this.http.delete(this.url+id)
+  }
 }

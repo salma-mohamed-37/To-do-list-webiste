@@ -23,7 +23,13 @@ export class AllTasksComponent implements OnInit
 
     this.filterService.filter$.subscribe(filter => {
       this.filter = filter;
+      this.getTasks();
 
+    });
+  }
+
+  getTasks()
+  {
     this.tasksService.getTasks(this.filter).subscribe({
       next: (tasks)=>{
         console.log("arrived");
@@ -33,22 +39,31 @@ export class AllTasksComponent implements OnInit
         console.log(err)
       }
     })
-    });
-
-
   }
 
   check(id:number)
   {
+    var done :boolean
     if(this.tasks.find(t => t.id == id)!.isCompleted)
-        this.tasks.find(t => t.id == id)!.isCompleted = false
+    {
+      this.tasks.find(t => t.id == id)!.isCompleted = false
+      done = false
+    }
     else
+    {
       this.tasks.find(t => t.id == id)!.isCompleted = true
+      done = true
+    }
+    this.checkTask(id,done)
   }
 
-  add()
+  add(value:boolean)
   {
-    this.addFlag = true
+    this.addFlag = value
+    if(value ==false)
+    {
+      this.getTasks()
+    }
   }
 
   update(id:number)
@@ -56,6 +71,34 @@ export class AllTasksComponent implements OnInit
     this.updateFlag = true
     this.id = id
   }
+
+  delete(id:number)
+  {
+    this.tasksService.delete(id).subscribe({
+      next: (res)=>{
+        console.log("arrived");
+        this.tasks=this.tasks.filter(x=>x.id != id)
+      },
+      error: (err)=>{
+        console.log(err)
+      }
+    })
+  }
+
+  checkTask(id:number,completed:boolean)
+  {
+    this.tasksService.check(id,completed).subscribe({
+      next: (res)=>{
+        console.log("arrived");
+      },
+      error: (err)=>{
+        console.log(err)
+      }
+    })
+  }
+
+
+
 
 
 }

@@ -1,5 +1,5 @@
 <main>
-    <div style="display: flex;align-items: center;justify-content: space-between;"><h1>{{filter}} </h1><i class="pi pi-plus" (click)="add()"></i></div>
+    <div style="display: flex;align-items: center;justify-content: space-between;"><h1>{{filter}} </h1><i class="pi pi-plus" (click)="add(true)"></i></div>
     <div>
       <section *ngFor="let t of tasks">
         <p>
@@ -9,7 +9,7 @@
           <i class="pi pi-calendar"></i>{{t.dueDate | date: 'dd-MM-yy '}}
         </p>
         <p>
-          <i class="pi pi-pencil" (click)="update(t.id)"></i> <i class="pi pi-trash"></i>
+          <i class="pi pi-pencil" (click)="update(t.id)"></i> <i class="pi pi-trash" (click)="delete(t.id)"></i>
         </p>
       </section>
     </div>
@@ -18,7 +18,7 @@
 <p-dialog  [(visible)]="addFlag" [modal]="true" [style]="{ 'width': '450px'}" >
   <p-header><div style="color:#8062D6;">Add Task Form</div></p-header>
   <ng-template pTemplate="content">
-   <div><app-add-task></app-add-task></div>
+   <div><app-add-task (close)="add($event)"></app-add-task></div>
   </ng-template>
 </p-dialog>
 
