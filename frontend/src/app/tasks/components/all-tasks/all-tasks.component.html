@@ -9,7 +9,7 @@
           <i class="pi pi-calendar"></i>{{t.dueDate | date: 'dd-MM-yy '}}
         </p>
         <p>
-          <i class="pi pi-pencil" (click)="update(t.id)"></i> <i class="pi pi-trash" (click)="delete(t.id)"></i>
+          <i class="pi pi-pencil" (click)="update(t.id,true)"></i> <i class="pi pi-trash" (click)="delete(t.id)"></i>
         </p>
       </section>
     </div>
@@ -25,6 +25,6 @@
 <p-dialog  [(visible)]="updateFlag" [modal]="true" [style]="{ 'width': '450px'}" >
   <p-header><div style="color:#8062D6;">Update Task Form</div></p-header>
   <ng-template pTemplate="content">
-   <div><app-update-task [id]="id"></app-update-task></div>
+   <div><app-update-task [id]="id" (close)="update(0,$event)"></app-update-task></div>
   </ng-template>
 </p-dialog>

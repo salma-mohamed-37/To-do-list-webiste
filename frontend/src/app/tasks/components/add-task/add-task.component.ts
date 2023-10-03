@@ -28,7 +28,7 @@ export class AddTaskComponent
     task = {
       'id':0,
       'content' : this.addForm.get('content')!.value,
-      'dueDate' : new Date(this.addForm.get('dueDate')!.value),
+      'dueDate' : this.addForm.get('dueDate')!.value,
       'isCompleted' : false
     }
     this.addTask(task)
@@ -41,6 +41,7 @@ export class AddTaskComponent
       next: (res)=>{
         console.log("arrived");
         this.close.emit(false);
+        console.log(task)
       },
       error: (err)=>{
         console.log(err)

@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from '../../interfaces/Task';
+import { Output, EventEmitter } from '@angular/core';
+import { TasksService } from '../../services/tasks.service';
 
 @Component({
   selector: 'app-update-task',
@@ -10,52 +12,53 @@ import { Task } from '../../interfaces/Task';
 export class UpdateTaskComponent
 {
   @Input() id: number = 0
+  @Output() close=new EventEmitter<boolean>();
   task! : Task ;
-  tasks : Task[] = [
-    {
-      id:1,
-      content :"my first task",
-      dueDate :  new Date('2023-09-28'),
-      isCompleted : false
-    },
-    {
-      id:2,
-      content :"my second task",
-      dueDate :  new Date('2023-09-28'),
-      isCompleted : true
-    },
-    {
-      id:3,
-      content :"my third task",
-      dueDate :  new Date('2023-09-28'),
-      isCompleted : false
-    }
-  ]
-
   updateForm! :FormGroup;
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, private tasksService :TasksService){}
 
   ngOnInit() {
-
-    this.task = this.tasks[this.id-1];
-
     this.updateForm = this.fb.group({
-      content : this.fb.control(this.task.content,Validators.required),
-      dueDate : this.fb.control(this.task.dueDate.toISOString().split("T")[0])
+      content : this.fb.control('',Validators.required),
+      dueDate : this.fb.control('')
     });
+
+    this.getTask()
+
+  }
+
+  getTask():boolean
+  {
+    this.tasksService.getTask(this.id).subscribe({
+      next: (task)=>{
+        console.log("task arrived");
+        this.task = task
+        this.updateForm.get('content')!.setValue(this.task.content)
+        this.updateForm.get('dueDate')!.setValue(this.task.dueDate.split("T")[0]);
+      },
+      error: (err)=>{
+        console.log(err)
+      }
+    })
+    return true
   }
 
   submit()
   {
    let c  = this.task.isCompleted
-    this.task = {
-      'id':0,
-      'content' : this.updateForm.get('content')!.value,
-      'dueDate' : new Date(this.updateForm.get('dueDate')!.value),
-      'isCompleted' :c
+   this.task.content = this.updateForm.get('content')!.value
+   this.task.dueDate = this.updateForm.get('dueDate')!.value
+
+  this.tasksService.update(this.id,this.task).subscribe({
+    next: (tasks)=>{
+      console.log("arrived");
+      this.close.emit(false);
+    },
+    error: (err)=>{
+      console.log(err)
     }
-    console.log(this.updateForm.get('dueDate')!.value)
-    console.log(this.task.dueDate.toISOString().split("T")[0])
+  })
+
   }
 
 }

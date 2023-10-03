@@ -66,10 +66,15 @@ export class AllTasksComponent implements OnInit
     }
   }
 
-  update(id:number)
+  update(id:number,value:boolean)
   {
-    this.updateFlag = true
+    this.updateFlag = value
     this.id = id
+    if(value ==false)
+    {
+      this.getTasks()
+    }
+
   }
 
   delete(id:number)
