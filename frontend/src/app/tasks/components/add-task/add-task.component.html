@@ -1,8 +1,8 @@
 <main>
   <form [formGroup]="addForm" (ngSubmit)="submit()">
-    <label for="task">Enter the task here</label> <br/>
+    <label for="task">Enter the task here (required)</label> <br/>
     <input type="text" name="task" id="task" formControlName="content"/> <br/>
-    <label for="dueDate"> Due date</label><br/>
+    <label for="dueDate"> Due date (optional)</label><br/>
     <input type="date" name="dueDate" id="dueDate" formControlName="dueDate"/><br/>
     <p style="text-align: center;"><input type="submit" value="Add"/></p>
   </form>

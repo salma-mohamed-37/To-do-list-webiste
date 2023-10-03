@@ -2,6 +2,12 @@
 {
   color:var(--text-color);
 }
+
+h1
+{
+  font-size: 2.5rem;
+}
+
 main
 {
   padding:5px;
@@ -21,15 +27,17 @@ section
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 1.5rem;
 }
 
 span
 {
   background-color: white;
 }
+
 .pi-plus
 {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 h1
@@ -40,4 +48,14 @@ h1
 .pi
 {
   margin: 3px;
+}
+
+.pi:hover
+{
+  cursor: pointer;
+}
+
+.pi-pencil,.pi-trash, .pi-stop,.pi-check-square
+{
+  font-size: 1.5rem;
 }

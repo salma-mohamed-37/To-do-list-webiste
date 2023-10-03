@@ -17,14 +17,14 @@
 </main>
 
 <p-dialog  [(visible)]="addFlag" [modal]="true" [style]="{ 'width': '450px'}" >
-  <p-header><div style="color:#8062D6;">Add Task Form</div></p-header>
+  <p-header><div style="color:#8062D6;">Add Task</div></p-header>
   <ng-template pTemplate="content">
    <div><app-add-task (close)="add($event)"></app-add-task></div>
   </ng-template>
 </p-dialog>
 
 <p-dialog  [(visible)]="updateFlag" [modal]="true" [style]="{ 'width': '450px'}" >
-  <p-header><div style="color:#8062D6;">Update Task Form</div></p-header>
+  <p-header><div style="color:#8062D6;">Update Task</div></p-header>
   <ng-template pTemplate="content">
    <div><app-update-task [id]="id" (close)="update(0,$event)"></app-update-task></div>
   </ng-template>
