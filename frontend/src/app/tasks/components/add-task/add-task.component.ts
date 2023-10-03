@@ -19,7 +19,7 @@ export class AddTaskComponent
   ngOnInit() {
     this.addForm = this.fb.group({
       content : this.fb.control('',Validators.required),
-      dueDate : this.fb.control('',Validators.required)
+      dueDate : this.fb.control('')
     });
   }
   submit()
@@ -28,11 +28,13 @@ export class AddTaskComponent
     task = {
       'id':0,
       'content' : this.addForm.get('content')!.value,
-      'dueDate' : this.addForm.get('dueDate')!.value,
+      'dueDate' : this.addForm.get('dueDate')!.value? this.addForm.get('dueDate')!.value : null,
       'isCompleted' : false
     }
     this.addTask(task)
     console.log("sent")
+    console.log(task)
+
   }
 
   addTask(task:Task)

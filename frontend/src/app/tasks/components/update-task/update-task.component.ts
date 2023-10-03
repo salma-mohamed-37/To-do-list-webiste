@@ -47,7 +47,7 @@ export class UpdateTaskComponent
   {
    let c  = this.task.isCompleted
    this.task.content = this.updateForm.get('content')!.value
-   this.task.dueDate = this.updateForm.get('dueDate')!.value
+   this.task.dueDate = this.updateForm.get('dueDate')!.value? this.updateForm.get('dueDate')!.value : null,
 
   this.tasksService.update(this.id,this.task).subscribe({
     next: (tasks)=>{

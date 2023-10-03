@@ -2,15 +2,16 @@
     <div style="display: flex;align-items: center;justify-content: space-between;"><h1>{{filter}} </h1><i class="pi pi-plus" (click)="add(true)"></i></div>
     <div>
       <section *ngFor="let t of tasks">
-        <p>
+        <aside>
           <span *ngIf="t.isCompleted == false" class="pi pi-stop" (click)="check(t.id)"></span> <span *ngIf="t.isCompleted == true" class="pi pi-check-square" (click)="check(t.id)"></span>
           {{t.content}}
           <br/>
-          <i class="pi pi-calendar"></i>{{t.dueDate | date: 'dd-MM-yy '}}
-        </p>
-        <p>
+          <p *ngIf="t.dueDate"><i class="pi pi-calendar"></i>{{t.dueDate | date: 'dd-MM-yy '}}</p>
+        </aside>
+
+        <aside>
           <i class="pi pi-pencil" (click)="update(t.id,true)"></i> <i class="pi pi-trash" (click)="delete(t.id)"></i>
-        </p>
+        </aside>
       </section>
     </div>
 </main>
